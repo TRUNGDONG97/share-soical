@@ -47,14 +47,14 @@ const App: () => Node = () => {
   const share = async () => {
     console.log(urlImage,'urlImage');
     try {
-      let file = '';
-      if (!!urlImage) {
-        file =await  ImgToBase64.getBase64String(urlImage)
-        console.log('file', file);
-      }
+      // let file = '';
+      // if (!!urlImage) {
+      //   file =await  ImgToBase64.getBase64String(urlImage)
+      //   console.log('file', file);
+      // }
       const shareOption = {
         message: 'helooo',
-        url: 'data:image/jpeg;base64,'+ file
+        // url: 'data:image/jpeg;base64,'+ file
       };
 
       const responseShare = await Share.open(shareOption);
