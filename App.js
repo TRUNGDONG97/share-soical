@@ -16,7 +16,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 
 import {
@@ -32,42 +32,43 @@ import ImgToBase64 from 'react-native-image-base64';
 const App: () => Node = () => {
   const refViewShot = useRef('initialValue');
   const [urlImage, setUrlImage] = useState('');
+
   const screenShot = async () => {
     console.log('refViewShot', refViewShot.current);
 
     try {
       let url = await refViewShot.current.capture();
+      console.log('irl',url);
+      let imageBase64 = await ImgToBase64.getBase64String(url);
       alert('Screenshot is success.');
-      setUrlImage(url);
+      setUrlImage(imageBase64);
     } catch (error) {
       alert(error);
     }
   };
 
   const share = async () => {
-    console.log(urlImage,'urlImage');
+    // console.log(urlImage, 'urlImage');
     try {
-      // let file = '';
-      // if (!!urlImage) {
-      //   file =await  ImgToBase64.getBase64String(urlImage)
-      //   console.log('file', file);
-      // }
       const shareOption = {
-        message: 'helooo',
-        // url: 'data:image/jpeg;base64,'+ file
+        url: 'data:image/png;base64,' + urlImage,
+        filename:"test.png",
+        type: 'image/png',
       };
 
       const responseShare = await Share.open(shareOption);
       console.log('responseShare', JSON.stringify(responseShare));
     } catch (error) {
-      console.log('errror',error);
+      console.log('errror', error);
     }
   };
+
   return (
     <ViewShot
       ref={refViewShot}
-      options={{format: 'jpg', quality: 0.9}}
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      options={{format: 'png', quality: 0.9}}
+      style={{flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor:'blue'}}>
+
       <TouchableOpacity
         onPress={screenShot}
         style={{
