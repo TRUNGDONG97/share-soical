@@ -98,7 +98,7 @@ const App: () => Node = () => {
           alignItems: 'center',
           borderRadius: 5,
         }}>
-        <Text style={{color: 'white'}}>screenShot</Text>
+        <Text style={{color: 'white'}}>Screenshot</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={shareText}
