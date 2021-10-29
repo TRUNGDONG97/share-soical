@@ -341,7 +341,7 @@ PODS:
     - React-jsi (= 0.66.1)
     - React-logger (= 0.66.1)
     - React-perflogger (= 0.66.1)
-  - RNShare (7.2.0):
+  - RNShare (7.2.1):
     - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -535,10 +535,10 @@ SPEC CHECKSUMS:
   React-RCTVibration: 6600b5eed7c0fda4a433fa1198d1cb2690151791
   React-runtimeexecutor: 33a949a51bec5f8a3c9e8d8092deb259600d761e
   ReactCommon: 620442811dc6f707b4bf5e3b27d4f19c12d5a821
-  RNShare: 70356a1bb406bc46ae03196a5d3048c702bb71a7
+  RNShare: edd621a71124961e29a7ba43a84bd1c6f9980d88
   Yoga: 2b4a01651f42a32f82e6cef3830a3ba48088237f
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 09fd83113343680e4da5c0f1f69b359a8a243413
+PODFILE CHECKSUM: 2be53167759922ab74419745be57a9996e704633
 
 COCOAPODS: 1.10.1

@@ -16,7 +16,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -38,7 +38,7 @@ const App: () => Node = () => {
 
     try {
       let url = await refViewShot.current.capture();
-      console.log('irl',url);
+      console.log('irl', url);
       let imageBase64 = await ImgToBase64.getBase64String(url);
       alert('Screenshot is success.');
       setUrlImage(imageBase64);
@@ -47,12 +47,16 @@ const App: () => Node = () => {
     }
   };
 
-  const share = async () => {
+  const shareScreen = async () => {
+    if (!urlImage) {
+      alert(`you didn't capture the screen`);
+      return
+    }
     // console.log(urlImage, 'urlImage');
     try {
       const shareOption = {
         url: 'data:image/png;base64,' + urlImage,
-        filename:"test.png",
+        filename: 'test.png',
         type: 'image/png',
       };
 
@@ -62,13 +66,28 @@ const App: () => Node = () => {
       console.log('errror', error);
     }
   };
+  const shareText = async () => {
+    try {
+      const shareOption = {
+        message: 'Hellooo',
+      };
 
+      const responseShare = await Share.open(shareOption);
+      console.log('responseShare', JSON.stringify(responseShare));
+    } catch (error) {
+      console.log('errror', error);
+    }
+  };
   return (
     <ViewShot
       ref={refViewShot}
       options={{format: 'png', quality: 0.9}}
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor:'blue'}}>
-
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+      }}>
       <TouchableOpacity
         onPress={screenShot}
         style={{
@@ -82,7 +101,19 @@ const App: () => Node = () => {
         <Text style={{color: 'white'}}>screenShot</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={share}
+        onPress={shareText}
+        style={{
+          backgroundColor: 'red',
+          width: 100,
+          height: 50,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 5, marginTop: 30,
+        }}>
+        <Text style={{color: 'white'}}>Share Text: Hellooo</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={shareScreen}
         style={{
           backgroundColor: 'green',
           width: 100,
@@ -92,7 +123,7 @@ const App: () => Node = () => {
           borderRadius: 5,
           marginTop: 30,
         }}>
-        <Text style={{color: 'white'}}>Share</Text>
+        <Text style={{color: 'white'}}>Share image screenshort</Text>
       </TouchableOpacity>
     </ViewShot>
   );
