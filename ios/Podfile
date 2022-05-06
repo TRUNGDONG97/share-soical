@@ -13,6 +13,7 @@ target 'research' do
   )
 
   pod 'RNShare', :path => '../node_modules/react-native-share'
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
 
   target 'researchTests' do
     inherit! :complete
